@@ -19,3 +19,8 @@ SELECT
 FROM Invoice i 
     JOIN Customer c ON i.CustomerId = c.CustomerId
 WHERE BillingCountry = "Brazil"
+
+-- Query for Employees who hold title of Sales Support Agents
+SELECT *
+FROM Employee
+WHERE Title = "Sales Support Agent"
