@@ -61,8 +61,14 @@ INNER JOIN Employee e
 -- FROM Invoice
 -- WHERE COUNT(InvoiceDate) IN (2009, 2011)
 -- GROUP BY COUNT(InvoiceDate)
-
 SELECT COUNT(*) AS InvoiceCount, strftime('%Y', InvoiceDate) AS Year
+FROM Invoice
+WHERE strftime('%Y', InvoiceDate) IN ('2009', '2011')
+GROUP BY Year
+
+-- Query for total sales for 2009 and 2011
+SELECT COUNT(*) AS TotalCount, strftime('%Y', InvoiceDate) AS Year,
+    SUM(Total) as TotalSales
 FROM Invoice
 WHERE strftime('%Y', InvoiceDate) IN ('2009', '2011')
 GROUP BY Year
