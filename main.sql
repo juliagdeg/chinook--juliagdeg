@@ -24,3 +24,7 @@ WHERE BillingCountry = "Brazil"
 SELECT *
 FROM Employee
 WHERE Title = "Sales Support Agent"
+
+-- Query for unique list of billing countries
+SELECT DISTINCT BillingCountry
+FROM Invoice
