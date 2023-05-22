@@ -3,3 +3,9 @@
 SELECT CustomerId, FirstName, LastName, Country
 FROM Customer
 WHERE Country <> "USA"
+
+-- Run a SQL Query that returns customers only from Brazil
+
+SELECT *
+FROM Customer
+WHERE Country = "Brazil"
