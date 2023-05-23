@@ -91,3 +91,14 @@ From InvoiceLine l
 INNER JOIN Track t 
     ON t.TrackId = l.TrackId
 GROUP BY InvoiceId
+
+-- Query for each line item purchased with track name AND name of artist
+SELECT 
+    l. InvoiceLineId,
+    t. Name AS TrackName,
+    a. Name AS ArtistName
+FROM InvoiceLine l 
+INNER JOIN Track t ON l.TrackId = t.TrackId
+INNER JOIN Album al ON t.AlbumId = al.AlbumId
+INNER JOIN Artist a ON al.ArtistId = a.ArtistId
+GROUP BY InvoiceLineId
