@@ -107,3 +107,9 @@ GROUP BY InvoiceLineId
 SELECT BillingCountry, COUNT(*) AS TotalInvoices
 FROM Invoice
 GROUP BY BillingCountry
+
+-- Query for total # of tracks in each playlist
+SELECT p.Name AS PlaylistName, COUNT(pt.TrackId) AS TotalTracks
+FROM Playlist p
+INNER JOIN PlaylistTrack pt ON p.PlaylistId = pt.PlaylistId
+GROUP BY p.PlaylistId, p.Name
