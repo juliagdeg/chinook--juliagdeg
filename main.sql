@@ -9,3 +9,13 @@ WHERE Country <> "USA"
 SELECT *
 FROM Customer
 WHERE Country = "Brazil"
+
+-- Query for invoices of Brazil customers
+SELECT
+    c. FirstName,
+    c. LastName,
+    i. InvoiceDate,
+    i. BillingCountry
+FROM Invoice i 
+    JOIN Customer c ON i.CustomerId = c.CustomerId
+WHERE BillingCountry = "Brazil"
