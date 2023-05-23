@@ -123,3 +123,16 @@ FROM Track t
 INNER JOIN Album a ON t.AlbumId = a.AlbumId
 INNER JOIN MediaType m ON t.MediaTypeId = m.MediaTypeId
 INNER JOIN Genre g ON t.GenreId = g.GenreId
+
+-- Query for all invoices w InvoiceId and total line items on each invoice
+-- SELECT DISTINCT 
+--     i. InvoiceId AS AllInvoices, 
+--     l. InvoiceId, COUNT(*) AS TotalLineItems
+-- FROM Invoice i
+-- GROUP BY l. InvoiceId
+SELECT
+  i.InvoiceId,
+  COUNT(il.InvoiceLineId) AS TotalLineItems
+FROM Invoice i
+LEFT JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId
+GROUP BY i.InvoiceId
