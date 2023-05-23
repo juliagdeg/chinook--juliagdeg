@@ -166,3 +166,13 @@ FROM
     WHERE (i.InvoiceDate LIKE '2009%')
     -- to group by employee and return the employee with the most sales that year, we group by Employee from that table
     GROUP BY EmployeeName)
+
+-- Query to show top sales rep over all
+SELECT 
+    e. FirstName || ' ' || e. LastName AS EmployeeName, SUM(i.Total) as TotalSales
+FROM Employee e 
+JOIN Customer AS c ON c.SupportRepId = e.EmployeeId
+JOIN Invoice AS i ON i.CustomerId = c.CustomerId
+GROUP BY e.EmployeeId
+ORDER BY TotalSales DESC
+LIMIT 1
