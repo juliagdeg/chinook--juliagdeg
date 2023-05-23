@@ -55,3 +55,14 @@ INNER JOIN Customer c
     ON c.CustomerId = i.CustomerId
 INNER JOIN Employee e 
     ON e.EmployeeId = c.SupportRepId
+
+-- Query for number of invoices in 2009 and 2011 (HINT: use COUNT)
+-- SELECT COUNT(InvoiceDate) AS Year
+-- FROM Invoice
+-- WHERE COUNT(InvoiceDate) IN (2009, 2011)
+-- GROUP BY COUNT(InvoiceDate)
+
+SELECT COUNT(*) AS InvoiceCount, strftime('%Y', InvoiceDate) AS Year
+FROM Invoice
+WHERE strftime('%Y', InvoiceDate) IN ('2009', '2011')
+GROUP BY Year
