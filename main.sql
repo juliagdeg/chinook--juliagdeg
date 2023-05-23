@@ -146,3 +146,23 @@ FROM Employee e
 JOIN Customer AS c on c.SupportRepId = e.EmployeeId
 JOIN Invoice AS i on i.CustomerId = c.CustomerId
 GROUP BY e.EmployeeId
+
+-- Query to show which sales agent made the most sales in 2009
+-- use the MAX function on this subquery
+-- first line selects what values we want shown in the SQL database
+SELECT MAX(TotalSales) as TotalSales, EmployeeName
+FROM
+-- SELECTING the Employee's name by joining the First/Last columns
+-- then we want to COUNT the number of InvoiceIds as the TotalSales
+    (SELECT
+        (e.FirstName || ' ' || e.LastName) AS EmployeeName,
+        COUNT(i.InvoiceId) as TotalSales
+    FROM Employee e
+    -- we need to match the EmployeeId to the SupportRepId to narrow the title results
+    JOIN Customer c ON e.EmployeeId = c.SupportRepId
+    -- then we need to JOIN the Invoice customer foreign column with the root Customer column
+    JOIN Invoice i ON i.CustomerId = c.CustomerId
+    -- here we specify what values we need to specify, like the year property 2009
+    WHERE (i.InvoiceDate LIKE '2009%')
+    -- to group by employee and return the employee with the most sales that year, we group by Employee from that table
+    GROUP BY EmployeeName)
