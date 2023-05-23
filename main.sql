@@ -28,3 +28,17 @@ WHERE Title = "Sales Support Agent"
 -- Query for unique list of billing countries
 SELECT DISTINCT BillingCountry
 FROM Invoice
+
+-- Query to show invoices associated with each sales agent
+-- Customer has SalesRepId (connect employee table JOIN customer salesrepId)
+-- Invoice table has CustomerId
+SELECT
+    c. SupportRepId,
+    e. FirstName,
+    e. LastName,
+    i. InvoiceId
+FROM Invoice i
+INNER JOIN Customer c 
+    ON c.CustomerId = i.CustomerId
+INNER JOIN Employee e 
+    ON e.EmployeeId = c.SupportRepId
