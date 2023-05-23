@@ -184,3 +184,9 @@ FROM Employee e
 JOIN Customer AS c ON c.SupportRepId = e.EmployeeId
 GROUP BY e.EmployeeId
 ORDER BY TotalAssignedCustomers DESC
+
+-- Query to show total sales per country
+SELECT BillingCountry, COUNT(InvoiceId) as TotalSalesPerCountry
+FROM Invoice
+GROUP BY BillingCountry
+ORDER BY TotalSalesPerCountry
