@@ -82,3 +82,12 @@ WHERE InvoiceId = '37'
 SELECT InvoiceId, COUNT(*) AS InvoiceCount
 FROM InvoiceLine
 GROUP BY InvoiceId
+
+-- Query for each line item with track name that was purchased
+SELECT 
+    l. InvoiceLineId,
+    t. Name AS TrackName
+From InvoiceLine l
+INNER JOIN Track t 
+    ON t.TrackId = l.TrackId
+GROUP BY InvoiceId
