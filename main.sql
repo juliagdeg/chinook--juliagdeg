@@ -199,3 +199,13 @@ FROM
     COUNT(InvoiceId) AS TopCountrySales
     FROM Invoice
     GROUP BY BillingCountry)
+
+-- Query to show most purchased tracks of 2013
+SELECT t.Name AS TrackName, COUNT(il.InvoiceLineId) as PurchasedCount
+FROM Track t
+JOIN InvoiceLine il ON t.TrackId = il.TrackId
+JOIN Invoice i ON il.InvoiceId = i.InvoiceId
+WHERE i.InvoiceDate BETWEEN '2013-01-01' AND '2013-12-31'
+GROUP BY t.Name
+ORDER BY PurchasedCount DESC
+LIMIT 1
