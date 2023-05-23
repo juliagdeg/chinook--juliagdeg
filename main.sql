@@ -113,3 +113,13 @@ SELECT p.Name AS PlaylistName, COUNT(pt.TrackId) AS TotalTracks
 FROM Playlist p
 INNER JOIN PlaylistTrack pt ON p.PlaylistId = pt.PlaylistId
 GROUP BY p.PlaylistId, p.Name
+
+-- Query to show all tracks but no IDs
+SELECT DISTINCT
+    a. Title AS AlbumName,
+    m. Name AS MediaType,
+    g. Name AS Genre
+FROM Track t
+INNER JOIN Album a ON t.AlbumId = a.AlbumId
+INNER JOIN MediaType m ON t.MediaTypeId = m.MediaTypeId
+INNER JOIN Genre g ON t.GenreId = g.GenreId
