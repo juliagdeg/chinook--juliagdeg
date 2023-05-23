@@ -219,3 +219,15 @@ JOIN Invoice i ON il.InvoiceId = i.InvoiceId
 GROUP BY t.Name
 ORDER BY TotalSales DESC
 LIMIT 1
+
+-- Query to show top 3 best selling artists
+SELECT
+    a.Name AS ArtistName, SUM(i.Total) as TotalSales
+FROM Artist a 
+JOIN Album al ON a.ArtistId = al.ArtistId
+JOIN Track t ON t.AlbumId = al.AlbumId
+JOIN InvoiceLine il ON il.TrackId = t.TrackId
+JOIN Invoice i ON i.InvoiceId = il.InvoiceId
+GROUP BY a.Name
+ORDER BY TotalSales DESC
+LIMIT 3 
