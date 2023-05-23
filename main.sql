@@ -176,3 +176,11 @@ JOIN Invoice AS i ON i.CustomerId = c.CustomerId
 GROUP BY e.EmployeeId
 ORDER BY TotalSales DESC
 LIMIT 1
+
+-- Query to show how many customers are assigned to each employee
+SELECT
+    e. FirstName || ' ' || e. LastName AS EmployeeName, COUNT(c.CustomerId) as TotalAssignedCustomers
+FROM Employee e 
+JOIN Customer AS c ON c.SupportRepId = e.EmployeeId
+GROUP BY e.EmployeeId
+ORDER BY TotalAssignedCustomers DESC
