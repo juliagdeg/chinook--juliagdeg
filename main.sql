@@ -42,3 +42,16 @@ INNER JOIN Customer c
     ON c.CustomerId = i.CustomerId
 INNER JOIN Employee e 
     ON e.EmployeeId = c.SupportRepId
+
+-- Query that shows customers and employees associated with each invoice
+SELECT
+    i. Total,
+    c. FirstName || ' ' || c.LastName AS CustomerName,
+    c. Country,
+    c. SupportRepId,
+    e. FirstName || ' ' || e.LastName AS EmployeeName
+FROM Invoice i
+INNER JOIN Customer c 
+    ON c.CustomerId = i.CustomerId
+INNER JOIN Employee e 
+    ON e.EmployeeId = c.SupportRepId
