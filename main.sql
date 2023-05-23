@@ -77,3 +77,8 @@ GROUP BY Year
 SELECT COUNT(*) AS InvoiceCount
 FROM InvoiceLine
 WHERE InvoiceId = '37'
+
+-- Query for # of line items for each invoice
+SELECT InvoiceId, COUNT(*) AS InvoiceCount
+FROM InvoiceLine
+GROUP BY InvoiceId
