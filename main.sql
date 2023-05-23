@@ -209,3 +209,13 @@ WHERE i.InvoiceDate BETWEEN '2013-01-01' AND '2013-12-31'
 GROUP BY t.Name
 ORDER BY PurchasedCount DESC
 LIMIT 1
+
+-- Query to show top 5 tracks purchased overall
+SELECT
+    t.Name AS TrackName, SUM(i.Total) as TotalSales
+FROM Track t 
+JOIN InvoiceLine il ON t.TrackId = il.TrackId
+JOIN Invoice i ON il.InvoiceId = i.InvoiceId
+GROUP BY t.Name
+ORDER BY TotalSales DESC
+LIMIT 1
