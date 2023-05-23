@@ -102,3 +102,8 @@ INNER JOIN Track t ON l.TrackId = t.TrackId
 INNER JOIN Album al ON t.AlbumId = al.AlbumId
 INNER JOIN Artist a ON al.ArtistId = a.ArtistId
 GROUP BY InvoiceLineId
+
+-- Query for total # of invoices per country
+SELECT BillingCountry, COUNT(*) AS TotalInvoices
+FROM Invoice
+GROUP BY BillingCountry
