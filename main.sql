@@ -190,3 +190,12 @@ SELECT BillingCountry, COUNT(InvoiceId) as TotalSalesPerCountry
 FROM Invoice
 GROUP BY BillingCountry
 ORDER BY TotalSalesPerCountry
+
+-- Query to show which country spent the most
+SELECT MAX(TopCountrySales) as TopCountrySales, BillingCountry
+FROM
+(SELECT
+    BillingCountry,
+    COUNT(InvoiceId) AS TopCountrySales
+    FROM Invoice
+    GROUP BY BillingCountry)
