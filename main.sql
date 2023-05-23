@@ -136,3 +136,13 @@ SELECT
 FROM Invoice i
 LEFT JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId
 GROUP BY i.InvoiceId
+
+-- Query for total sales made by sales agent
+SELECT
+    e. FirstName,
+    e. LastName, 
+    SUM(i.total)
+FROM Employee e 
+JOIN Customer AS c on c.SupportRepId = e.EmployeeId
+JOIN Invoice AS i on i.CustomerId = c.CustomerId
+GROUP BY e.EmployeeId
